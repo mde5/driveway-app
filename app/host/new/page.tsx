@@ -72,7 +72,8 @@ export default function NewListingPage() {
       })
 
       router.push('/host/listings')
-    } catch {
+    } catch (e) {
+      console.error('Failed to publish listing:', e)
       setError('root', { message: 'Something went wrong. Please try again.' })
     }
   }
