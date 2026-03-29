@@ -79,7 +79,7 @@ export default function ListingContent() {
       {/* Details */}
       <div className="space-y-4">
         <div>
-          <h1 className="text-2xl font-semibold">{listing.neighbourhood}</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-700">{listing.neighbourhood}</h1>
           <p className="text-zinc-500">{listing.address}</p>
           {date && <p className="mt-1 text-sm text-zinc-400">{date}</p>}
         </div>

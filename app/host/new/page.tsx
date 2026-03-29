@@ -82,7 +82,7 @@ export default function NewListingPage() {
       <Link href="/host/listings" className="mb-6 inline-block text-sm text-zinc-500 hover:text-zinc-900">
         ← Your listings
       </Link>
-      <h1 className="mb-6 text-2xl font-semibold">List your driveway</h1>
+      <h1 className="mb-6 text-2xl font-bold tracking-tight text-slate-700">List your driveway</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div>

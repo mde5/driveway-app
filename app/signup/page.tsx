@@ -52,7 +52,7 @@ export default function SignupPage() {
   return (
     <div className="flex min-h-full flex-col items-center justify-center px-4">
       <div className="w-full max-w-sm space-y-6">
-        <h1 className="text-2xl font-semibold text-center">Create an account</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-slate-700 text-center">Create an account</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>

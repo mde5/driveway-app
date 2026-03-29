@@ -107,7 +107,7 @@ export default function ListingsContent() {
   return (
     <div className="flex h-screen flex-col">
       {/* Header */}
-      <div className="flex items-center gap-4 border-b px-6 py-4">
+      <div className="flex items-center gap-4 border-b border-zinc-100 bg-white px-6 py-4 shadow-sm">
         <Link href="/" className="text-sm text-zinc-500 hover:text-black">
           ← Back
         </Link>
@@ -121,7 +121,7 @@ export default function ListingsContent() {
       {/* Two-column layout */}
       <div className="flex flex-1 overflow-hidden">
         {/* Listing list */}
-        <div className="w-2/5 overflow-y-auto border-r">
+        <div className="w-1/5 overflow-y-auto border-r border-zinc-100">
           {listings.length === 0 ? (
             <p className="p-8 text-center text-zinc-400">
               No spots found nearby. Try a different location.
@@ -132,7 +132,7 @@ export default function ListingsContent() {
                 <li key={listing.id}>
                   <Link
                     href={`/listing?id=${listing.id}&date=${date}&address=${encodeURIComponent(address)}`}
-                    className={`flex gap-4 border-b p-4 transition-colors hover:bg-zinc-50 ${hoveredId === listing.id ? 'bg-zinc-50' : ''}`}
+                    className={`flex gap-4 border-b border-zinc-100 p-4 transition-all hover:shadow-sm hover:bg-white ${hoveredId === listing.id ? 'bg-white shadow-sm' : ''}`}
                     onMouseEnter={() => setHoveredId(listing.id)}
                     onMouseLeave={() => setHoveredId(null)}
                   >

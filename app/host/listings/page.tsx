@@ -50,7 +50,7 @@ export default function HostListingsPage() {
           <Link href="/dashboard" className="mb-1 block text-sm text-zinc-500 hover:text-zinc-900">
             ← Dashboard
           </Link>
-          <h1 className="text-2xl font-semibold">Your listings</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-700">Your listings</h1>
         </div>
         <Link
           href="/host/new"

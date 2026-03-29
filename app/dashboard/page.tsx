@@ -24,7 +24,7 @@ export default function DashboardPage() {
   return (
     <div className="flex min-h-full flex-col items-center justify-center px-4">
       <div className="w-full max-w-sm space-y-4 text-center">
-        <h1 className="text-2xl font-semibold">Dashboard</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-slate-700">Dashboard</h1>
         <p className="text-sm text-zinc-500">Signed in as <span className="font-medium text-zinc-900">{user.email}</span></p>
         <div className="flex flex-col gap-3 pt-2">
           <Link
