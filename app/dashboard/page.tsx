@@ -34,6 +34,12 @@ export default function DashboardPage() {
             Find parking
           </Link>
           <Link
+            href="/bookings"
+            className="rounded-md border border-zinc-300 py-2 text-sm font-medium hover:bg-zinc-50 transition-colors"
+          >
+            My bookings
+          </Link>
+          <Link
             href="/host/listings"
             className="rounded-md border border-zinc-300 py-2 text-sm font-medium hover:bg-zinc-50 transition-colors"
           >

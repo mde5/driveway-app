@@ -1,13 +1,45 @@
 'use client'
+import { useEffect, useRef } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { db } from '@/lib/firebase'
+import { useAuth } from '@/context/AuthContext'
 import Link from 'next/link'
 
 export default function SuccessContent() {
   const searchParams = useSearchParams()
+  const { user } = useAuth()
+  const savedRef = useRef(false)
+
   const address = searchParams.get('address') ?? ''
   const hours = searchParams.get('hours') ?? ''
   const total = searchParams.get('total') ?? ''
   const date = searchParams.get('date') ?? ''
+  const listingId = searchParams.get('listingId') ?? ''
+
+  // Save booking to Firestore once on mount.
+  // savedRef prevents double-saving if the component re-renders.
+  // localStorage prevents re-saving if the user refreshes the page.
+  useEffect(() => {
+    if (!user || !listingId || savedRef.current) return
+
+    const storageKey = `booking-saved-${listingId}-${date}-${user.uid}`
+    if (localStorage.getItem(storageKey)) return
+
+    savedRef.current = true
+
+    addDoc(collection(db, 'bookings'), {
+      userId: user.uid,
+      listingId,
+      listingAddress: address,
+      hours: Number(hours),
+      total: Number(total),
+      date,
+      createdAt: serverTimestamp(),
+    }).then(() => {
+      localStorage.setItem(storageKey, '1')
+    })
+  }, [user, listingId, address, hours, total, date])
 
   return (
     <div className="flex min-h-full flex-col items-center justify-center px-4">
@@ -50,12 +82,20 @@ export default function SuccessContent() {
           )}
         </div>
 
-        <Link
-          href="/"
-          className="block w-full rounded-lg bg-indigo-600 py-3 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors"
-        >
-          Find more parking
-        </Link>
+        <div className="flex flex-col gap-3">
+          <Link
+            href="/bookings"
+            className="block w-full rounded-lg bg-indigo-600 py-3 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors"
+          >
+            View my bookings
+          </Link>
+          <Link
+            href="/"
+            className="block w-full rounded-lg border border-zinc-200 py-3 text-sm font-semibold text-zinc-600 hover:bg-zinc-50 transition-colors"
+          >
+            Find more parking
+          </Link>
+        </div>
       </div>
     </div>
   )
