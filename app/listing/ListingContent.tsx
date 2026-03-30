@@ -2,7 +2,8 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { doc, getDoc } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { httpsCallable } from 'firebase/functions'
+import { db, functions } from '@/lib/firebase'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -25,6 +26,8 @@ export default function ListingContent() {
   const [listing, setListing] = useState<Listing | null>(null)
   const [hours, setHours] = useState(2)
   const [loading, setLoading] = useState(true)
+  const [reserving, setReserving] = useState(false)
+  const [reserveError, setReserveError] = useState<string | null>(null)
 
   useEffect(() => {
     if (!id) return
@@ -54,6 +57,28 @@ export default function ListingContent() {
   // Apply day rate if booking 8 or more hours
   const usesDayRate = hours >= 8
   const total = usesDayRate ? listing.pricePerDay : listing.pricePerHour * hours
+
+  async function handleReserve() {
+    setReserving(true)
+    setReserveError(null)
+    try {
+      const createCheckoutSession = httpsCallable(functions, 'createCheckoutSession')
+      const result = await createCheckoutSession({
+        listingId: id,
+        listingAddress: listing!.address,
+        hours,
+        total,
+        date,
+        origin: window.location.origin,
+      })
+      const { url } = result.data as { url: string }
+      window.location.href = url
+    } catch (e: unknown) {
+      console.error(e)
+      setReserveError('Could not start checkout. Please try again.')
+      setReserving(false)
+    }
+  }
 
   const backHref = address
     ? `/listings?address=${encodeURIComponent(address)}&date=${date}`
@@ -120,11 +145,13 @@ export default function ListingContent() {
             </p>
             <p className="text-3xl font-bold">${total}</p>
           </div>
+          {reserveError && <p className="text-sm text-red-500">{reserveError}</p>}
           <button
-            className="rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-indigo-700"
-            onClick={() => alert('Payment coming soon!')}
+            className="rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-indigo-700 disabled:opacity-50"
+            onClick={handleReserve}
+            disabled={reserving}
           >
-            Reserve
+            {reserving ? 'Loading...' : 'Reserve'}
           </button>
         </div>
       </div>
