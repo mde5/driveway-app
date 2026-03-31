@@ -1,5 +1,5 @@
 'use client'
-import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps'
+import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps'
 import { useRouter } from 'next/navigation'
 
 type Listing = {
@@ -18,7 +18,7 @@ type Props = {
   address: string
 }
 
-export default function MapView({ center, listings, date, address }: Props) {
+export default function MapView({ center, listings, hoveredId, date, address }: Props) {
   const router = useRouter()
 
   return (
@@ -28,19 +28,42 @@ export default function MapView({ center, listings, date, address }: Props) {
         defaultCenter={center}
         defaultZoom={14}
         gestureHandling="greedy"
+        mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID}
       >
-        {listings.map(listing => (
-          <Marker
-            key={listing.id}
-            position={{ lat: listing.lat, lng: listing.lng }}
-            title={`${listing.address} — $${listing.pricePerHour}/hr`}
-            onClick={() =>
-              router.push(
-                `/listing?id=${listing.id}&date=${date}&address=${encodeURIComponent(address)}`
-              )
-            }
-          />
-        ))}
+        {listings.map(listing => {
+          const hovered = listing.id === hoveredId
+          return (
+            <AdvancedMarker
+              key={listing.id}
+              position={{ lat: listing.lat, lng: listing.lng }}
+              title={`${listing.address} — $${listing.pricePerHour}/hr`}
+              onClick={() =>
+                router.push(
+                  `/listing?id=${listing.id}&date=${date}&address=${encodeURIComponent(address)}`
+                )
+              }
+            >
+              <div
+                style={{
+                  background: hovered ? '#111' : '#fff',
+                  color: hovered ? '#fff' : '#111',
+                  border: '2px solid #111',
+                  borderRadius: '9999px',
+                  padding: '4px 10px',
+                  fontSize: '13px',
+                  fontWeight: 700,
+                  lineHeight: 1.2,
+                  whiteSpace: 'nowrap',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.25)',
+                  cursor: 'pointer',
+                  transition: 'background 0.15s, color 0.15s',
+                }}
+              >
+                ${listing.pricePerHour}/hr
+              </div>
+            </AdvancedMarker>
+          )
+        })}
       </Map>
     </APIProvider>
   )

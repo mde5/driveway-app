@@ -121,7 +121,7 @@ export default function ListingsContent() {
       {/* Two-column layout */}
       <div className="flex flex-1 overflow-hidden">
         {/* Listing list */}
-        <div className="w-1/5 overflow-y-auto border-r border-zinc-100">
+        <div className="w-2/5 overflow-y-auto border-r border-zinc-100">
           {listings.length === 0 ? (
             <p className="p-8 text-center text-zinc-400">
               No spots found nearby. Try a different location.
