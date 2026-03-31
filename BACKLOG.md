@@ -4,20 +4,15 @@ Items to tackle in future sessions, roughly in priority order.
 
 ## Bugs / UX issues
 
-- **"Must be signed in to book" UX** — Unauthenticated users who click Reserve get a generic "Could not start checkout. Please try again." message, with the real Firebase auth error only visible in the console. Fix options: show an informative message ("Please sign in to book") or redirect to the login page.
-
-- **Price capping logic** — Day rate should kick in whenever the hourly total would exceed it, not just at 8+ hours. E.g. if day rate is $30 and hourly is $5, the cap should kick in at 6 hours.
+- **"Must be signed in to book" UX** — Unauthenticated users who click Reserve are now redirected to the login page, however there is no explanation of why they are redirected. Possible add a message at the top (e.g. "Please sign in to continue") whenever users are redirected to the login page from another page?
 
 ## Bugs / UX issues
 
-- **Responsive layout on /listings** — The sidebar+map split layout isn't right on both mobile and desktop. `w-2/5` is too wide on desktop but `w-1/5` is too narrow on mobile. Needs a proper responsive approach (e.g. stack vertically on small screens).
+- **Layout on /listings for mobile** — The listings bar on top of the listings+map split on mobile shows 2 listings/cards and a third cutoff card near the bottom. Can we make it so that it shows exactly two cards?
 
 ## Polish
 
-- **Homepage/landing page copy** — Review and tighten wording. Decide on consistent terminology throughout the app ("private driveway" vs "parking spot").
+- **UI styling** — Let's personalize the UI of this web app so that it has our own unique look and feel. Maybe use colors commonly associated with parking like grey, white and yellow? Let's also add some visuals to the homepage to make it feel less like a prototype and more like a production ready app. It's okay if it looks a bit cartoony and light hearted, we aren't taking ourselves too seriously here. 
 
-- **Dashboard wording review** — Review all text on the dashboard page for clarity and consistency.
-
-## Audits
-
-- **Free tier quota review** — Audit all API integrations (Google Maps Geocoding, Maps JS, Places, Firebase Firestore reads/writes, Cloud Functions invocations) to confirm usage stays within free tier limits. Flag anything that could spike unexpectedly.
+# User flow
+- **Separate renters/rentee flow** - Should we consi separating user flows for those who are renting their driveway vs. those who are looking for parking? Does it make sense to show both to users on the dashboard since users may not be both renters and buyers? While we are still in the early phases it's nice to have all the links on the same dashboard, but we can also think about creating a separate flow for users who are renting out their parking space. 
