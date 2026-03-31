@@ -11,7 +11,7 @@ export default function Home() {
         </div>
         <SearchForm />
         <p className="text-center text-sm text-zinc-400">
-          Have a driveway to rent?{' '}
+          Have a driveway or parking spot sitting empty?{' '}
           <Link href="/signup" className="text-indigo-600 underline underline-offset-2">
             List your space
           </Link>

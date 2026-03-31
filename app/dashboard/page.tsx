@@ -43,7 +43,7 @@ export default function DashboardPage() {
             href="/host/listings"
             className="rounded-md border border-zinc-300 py-2 text-sm font-medium hover:bg-zinc-50 transition-colors"
           >
-            Your listings
+            My listings
           </Link>
           <Link
             href="/host/new"
