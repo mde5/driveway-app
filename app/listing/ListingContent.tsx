@@ -54,9 +54,10 @@ export default function ListingContent() {
     )
   }
 
-  // Apply day rate if booking 8 or more hours
-  const usesDayRate = hours >= 8
-  const total = usesDayRate ? listing.pricePerDay : listing.pricePerHour * hours
+  // Apply day rate whenever it's cheaper than the hourly total
+  const hourlyTotal = listing.pricePerHour * hours
+  const usesDayRate = hourlyTotal >= listing.pricePerDay
+  const total = usesDayRate ? listing.pricePerDay : hourlyTotal
 
   async function handleReserve() {
     setReserving(true)
