@@ -119,9 +119,9 @@ export default function ListingsContent() {
       </div>
 
       {/* Two-column layout */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 flex-col overflow-hidden md:flex-row">
         {/* Listing list */}
-        <div className="w-2/5 overflow-y-auto border-r border-zinc-100">
+        <div className="h-1/3 overflow-y-auto border-b border-zinc-100 md:h-auto md:w-96 md:border-b-0 md:border-r md:flex-shrink-0">
           {listings.length === 0 ? (
             <p className="p-8 text-center text-zinc-400">
               No spots found nearby. Try a different location.
@@ -163,7 +163,7 @@ export default function ListingsContent() {
         </div>
 
         {/* Map */}
-        <div className="flex-1">
+        <div className="h-2/3 md:h-auto md:flex-1">
           {center && (
             <MapView
               center={center}
