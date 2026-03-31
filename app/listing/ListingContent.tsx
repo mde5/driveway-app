@@ -1,9 +1,10 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { doc, getDoc } from 'firebase/firestore'
 import { httpsCallable } from 'firebase/functions'
 import { db, functions } from '@/lib/firebase'
+import { useAuth } from '@/context/AuthContext'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -22,6 +23,8 @@ export default function ListingContent() {
   const id = searchParams.get('id') ?? ''
   const date = searchParams.get('date') ?? ''
   const address = searchParams.get('address') ?? ''
+  const { user } = useAuth()
+  const router = useRouter()
 
   const [listing, setListing] = useState<Listing | null>(null)
   const [hours, setHours] = useState(2)
@@ -60,6 +63,10 @@ export default function ListingContent() {
   const total = usesDayRate ? listing.pricePerDay : hourlyTotal
 
   async function handleReserve() {
+    if (!user) {
+      router.push(`/login?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`)
+      return
+    }
     setReserving(true)
     setReserveError(null)
     try {

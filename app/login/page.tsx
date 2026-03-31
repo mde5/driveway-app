@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { auth } from '@/lib/firebase'
@@ -16,17 +16,19 @@ type FormData = {
 export default function LoginPage() {
   const { user, loading } = useAuth()
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const redirect = searchParams.get('redirect') ?? '/dashboard'
   const { register, handleSubmit, formState: { errors, isSubmitting }, setError } = useForm<FormData>()
 
-  // If already logged in, send to dashboard
+  // If already logged in, send to redirect destination
   useEffect(() => {
-    if (!loading && user) router.replace('/dashboard')
-  }, [user, loading, router])
+    if (!loading && user) router.replace(redirect)
+  }, [user, loading, router, redirect])
 
   async function onSubmit(data: FormData) {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password)
-      router.push('/dashboard')
+      router.push(redirect)
     } catch {
       setError('root', { message: 'Invalid email or password.' })
     }
@@ -35,7 +37,7 @@ export default function LoginPage() {
   async function handleGoogleSignIn() {
     try {
       await signInWithPopup(auth, new GoogleAuthProvider())
-      router.push('/dashboard')
+      router.push(redirect)
     } catch {
       setError('root', { message: 'Google sign-in failed. Please try again.' })
     }
