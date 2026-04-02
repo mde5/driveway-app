@@ -30,7 +30,7 @@ export default function NewListingPage() {
   } = useForm<FormData>()
 
   useEffect(() => {
-    if (!loading && !user) router.replace('/login')
+    if (!loading && !user) router.replace('/login?redirect=/host/new')
   }, [user, loading, router])
 
   if (loading || !user) return null

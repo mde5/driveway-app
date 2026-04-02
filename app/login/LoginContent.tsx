@@ -45,9 +45,16 @@ export default function LoginContent() {
 
   if (loading) return null
 
+  const redirected = searchParams.get('redirect') !== null
+
   return (
     <div className="flex min-h-full flex-col items-center justify-center px-4">
       <div className="w-full max-w-sm space-y-6">
+        {redirected && (
+          <p className="rounded-md bg-blue-50 border border-blue-200 px-4 py-3 text-sm text-blue-700 text-center">
+            Please sign in to continue.
+          </p>
+        )}
         <h1 className="text-2xl font-bold tracking-tight text-slate-700 text-center">Sign in</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

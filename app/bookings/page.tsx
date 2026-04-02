@@ -22,7 +22,7 @@ export default function BookingsPage() {
   const [fetching, setFetching] = useState(true)
 
   useEffect(() => {
-    if (!loading && !user) router.replace('/login')
+    if (!loading && !user) router.replace('/login?redirect=/bookings')
   }, [user, loading, router])
 
   useEffect(() => {

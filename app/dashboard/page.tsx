@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/AuthContext'
 import Link from 'next/link'
@@ -8,15 +8,16 @@ import Link from 'next/link'
 export default function DashboardPage() {
   const { user, loading, logout } = useAuth()
   const router = useRouter()
+  const loggingOut = useRef(false)
 
-  // Redirect to login if not authenticated
   useEffect(() => {
-    if (!loading && !user) router.replace('/login')
+    if (!loading && !user && !loggingOut.current) router.replace('/login?redirect=/dashboard')
   }, [user, loading, router])
 
   if (loading || !user) return null
 
   async function handleLogout() {
+    loggingOut.current = true
     await logout()
     router.push('/login')
   }
