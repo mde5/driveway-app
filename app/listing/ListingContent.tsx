@@ -155,7 +155,7 @@ export default function ListingContent() {
           </div>
           {reserveError && <p className="text-sm text-red-500">{reserveError}</p>}
           <button
-            className="rounded-lg bg-yellow-400 px-6 py-3 text-sm font-semibold text-gray-900 transition-colors hover:bg-yellow-500 disabled:opacity-50"
+            className="cursor-pointer rounded-lg bg-yellow-400 px-6 py-3 text-sm font-semibold text-gray-900 transition-colors hover:bg-yellow-500 disabled:opacity-50"
             onClick={handleReserve}
             disabled={reserving}
           >

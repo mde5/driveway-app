@@ -161,7 +161,7 @@ export default function NewListingPage() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded-lg bg-yellow-400 py-3 text-sm font-semibold text-gray-900 transition-colors hover:bg-yellow-500 disabled:opacity-50"
+          className="w-full cursor-pointer rounded-lg bg-yellow-400 py-3 text-sm font-semibold text-gray-900 transition-colors hover:bg-yellow-500 disabled:opacity-50"
         >
           {isSubmitting ? 'Publishing...' : 'Publish listing'}
         </button>

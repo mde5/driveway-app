@@ -83,7 +83,7 @@ export default function LoginContent() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full rounded-md bg-yellow-400 py-2 text-sm font-medium text-gray-900 hover:bg-yellow-500 disabled:opacity-50"
+            className="w-full cursor-pointer rounded-md bg-yellow-400 py-2 text-sm font-medium text-gray-900 hover:bg-yellow-500 disabled:opacity-50"
           >
             {isSubmitting ? 'Signing in...' : 'Sign in'}
           </button>
@@ -96,7 +96,7 @@ export default function LoginContent() {
 
         <button
           onClick={handleGoogleSignIn}
-          className="w-full rounded-md border border-zinc-300 py-2 text-sm font-medium hover:bg-zinc-50"
+          className="w-full cursor-pointer rounded-md border border-zinc-300 py-2 text-sm font-medium hover:bg-zinc-100 transition-colors"
         >
           Continue with Google
         </button>

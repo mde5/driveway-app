@@ -22,7 +22,7 @@ export default function SearchForm() {
       />
       <button
         type="submit"
-        className="w-full rounded-lg bg-yellow-400 py-3 text-sm font-semibold text-gray-900 hover:bg-yellow-500 transition-colors"
+        className="w-full cursor-pointer rounded-lg bg-yellow-400 py-3 text-sm font-semibold text-gray-900 hover:bg-yellow-500 transition-colors"
       >
         Search parking
       </button>
