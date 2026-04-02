@@ -51,7 +51,7 @@ export default function LoginContent() {
     <div className="flex min-h-full flex-col items-center justify-center px-4">
       <div className="w-full max-w-sm space-y-6">
         {redirected && (
-          <p className="rounded-md bg-blue-50 border border-blue-200 px-4 py-3 text-sm text-blue-700 text-center">
+          <p className="rounded-md bg-yellow-50 border border-yellow-200 px-4 py-3 text-sm text-yellow-800 text-center">
             Please sign in to continue.
           </p>
         )}
@@ -62,7 +62,7 @@ export default function LoginContent() {
             <label className="block text-sm font-medium mb-1">Email</label>
             <input
               type="email"
-              className="w-full rounded-md border border-zinc-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-md border border-zinc-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
               {...register('email', { required: 'Email is required' })}
             />
             {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
@@ -72,7 +72,7 @@ export default function LoginContent() {
             <label className="block text-sm font-medium mb-1">Password</label>
             <input
               type="password"
-              className="w-full rounded-md border border-zinc-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-md border border-zinc-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
               {...register('password', { required: 'Password is required' })}
             />
             {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
@@ -83,7 +83,7 @@ export default function LoginContent() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full rounded-md bg-indigo-600 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:opacity-50"
+            className="w-full rounded-md bg-yellow-400 py-2 text-sm font-medium text-gray-900 hover:bg-yellow-500 disabled:opacity-50"
           >
             {isSubmitting ? 'Signing in...' : 'Sign in'}
           </button>
@@ -103,7 +103,7 @@ export default function LoginContent() {
 
         <p className="text-center text-sm text-zinc-500">
           Don&apos;t have an account?{' '}
-          <Link href="/signup" className="font-medium text-indigo-600 underline">Sign up</Link>
+          <Link href="/signup" className="font-medium text-yellow-600 underline">Sign up</Link>
         </p>
       </div>
     </div>

@@ -54,7 +54,7 @@ export default function HostListingsPage() {
         </div>
         <Link
           href="/host/new"
-          className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-indigo-700"
+          className="rounded-lg bg-yellow-400 px-4 py-2 text-sm font-semibold text-gray-900 transition-colors hover:bg-yellow-500"
         >
           + New listing
         </Link>
@@ -65,14 +65,14 @@ export default function HostListingsPage() {
       ) : listings.length === 0 ? (
         <div className="rounded-xl border border-dashed border-zinc-200 py-16 text-center">
           <p className="mb-4 text-zinc-500">You haven&apos;t listed any driveways yet.</p>
-          <Link href="/host/new" className="text-sm font-medium text-indigo-600 underline underline-offset-2">
+          <Link href="/host/new" className="text-sm font-medium text-yellow-600 underline underline-offset-2">
             List your first space
           </Link>
         </div>
       ) : (
         <ul className="space-y-4">
           {listings.map(listing => (
-            <li key={listing.id} className="flex gap-4 rounded-xl border border-zinc-200 p-4">
+            <li key={listing.id} className="flex gap-4 rounded-xl border border-zinc-200 border-t-4 border-t-yellow-400 bg-white p-4">
               <div className="relative h-20 w-28 flex-shrink-0 overflow-hidden rounded-lg bg-zinc-100">
                 <Image
                   src={listing.imageUrl}

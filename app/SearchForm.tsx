@@ -11,18 +11,18 @@ export default function SearchForm() {
         placeholder="Where are you going? (e.g. CN Tower, Toronto)"
         required
         autoComplete="off"
-        className="w-full rounded-lg border border-zinc-200 px-4 py-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        className="w-full rounded-lg border border-zinc-200 bg-white px-4 py-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
       />
       <input
         type="date"
         name="date"
         required
         defaultValue={today}
-        className="w-full rounded-lg border border-zinc-200 px-4 py-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        className="w-full rounded-lg border border-zinc-200 bg-white px-4 py-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
       />
       <button
         type="submit"
-        className="w-full rounded-lg bg-indigo-600 py-3 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors"
+        className="w-full rounded-lg bg-yellow-400 py-3 text-sm font-semibold text-gray-900 hover:bg-yellow-500 transition-colors"
       >
         Search parking
       </button>

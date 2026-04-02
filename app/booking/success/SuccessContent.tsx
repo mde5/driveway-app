@@ -85,7 +85,7 @@ export default function SuccessContent() {
         <div className="flex flex-col gap-3">
           <Link
             href="/bookings"
-            className="block w-full rounded-lg bg-indigo-600 py-3 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors"
+            className="block w-full rounded-lg bg-yellow-400 py-3 text-sm font-semibold text-gray-900 hover:bg-yellow-500 transition-colors"
           >
             View my bookings
           </Link>

@@ -91,7 +91,7 @@ export default function NewListingPage() {
           <input
             type="text"
             placeholder="123 Main St, Toronto, ON"
-            className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
             {...register('address', { required: 'Address is required' })}
           />
           {errors.address && <p className="mt-1 text-xs text-red-500">{errors.address.message}</p>}
@@ -102,7 +102,7 @@ export default function NewListingPage() {
           <input
             type="text"
             placeholder="e.g. King West, Distillery District"
-            className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
             {...register('neighbourhood', { required: 'Neighbourhood is required' })}
           />
           {errors.neighbourhood && <p className="mt-1 text-xs text-red-500">{errors.neighbourhood.message}</p>}
@@ -113,7 +113,7 @@ export default function NewListingPage() {
           <textarea
             rows={3}
             placeholder="Describe your space — access instructions, nearby landmarks, any restrictions..."
-            className="w-full resize-none rounded-lg border border-zinc-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full resize-none rounded-lg border border-zinc-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
             {...register('description', { required: 'Description is required' })}
           />
           {errors.description && <p className="mt-1 text-xs text-red-500">{errors.description.message}</p>}
@@ -126,7 +126,7 @@ export default function NewListingPage() {
               type="number"
               min={1}
               placeholder="5"
-              className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
               {...register('pricePerHour', { required: 'Required', min: { value: 1, message: 'Min $1' } })}
             />
             {errors.pricePerHour && <p className="mt-1 text-xs text-red-500">{errors.pricePerHour.message}</p>}
@@ -137,7 +137,7 @@ export default function NewListingPage() {
               type="number"
               min={1}
               placeholder="30"
-              className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
               {...register('pricePerDay', { required: 'Required', min: { value: 1, message: 'Min $1' } })}
             />
             {errors.pricePerDay && <p className="mt-1 text-xs text-red-500">{errors.pricePerDay.message}</p>}
@@ -161,7 +161,7 @@ export default function NewListingPage() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded-lg bg-indigo-600 py-3 text-sm font-semibold text-white transition-colors hover:bg-indigo-700 disabled:opacity-50"
+          className="w-full rounded-lg bg-yellow-400 py-3 text-sm font-semibold text-gray-900 transition-colors hover:bg-yellow-500 disabled:opacity-50"
         >
           {isSubmitting ? 'Publishing...' : 'Publish listing'}
         </button>

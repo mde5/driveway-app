@@ -140,7 +140,7 @@ export default function ListingContent() {
             max={24}
             value={hours}
             onChange={e => setHours(Math.max(1, parseInt(e.target.value) || 1))}
-            className="w-24 rounded-lg border border-zinc-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-24 rounded-lg border border-zinc-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
           />
           {usesDayRate && (
             <p className="mt-1 text-xs text-zinc-400">Day rate applied (8+ hours)</p>
@@ -155,7 +155,7 @@ export default function ListingContent() {
           </div>
           {reserveError && <p className="text-sm text-red-500">{reserveError}</p>}
           <button
-            className="rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-indigo-700 disabled:opacity-50"
+            className="rounded-lg bg-yellow-400 px-6 py-3 text-sm font-semibold text-gray-900 transition-colors hover:bg-yellow-500 disabled:opacity-50"
             onClick={handleReserve}
             disabled={reserving}
           >

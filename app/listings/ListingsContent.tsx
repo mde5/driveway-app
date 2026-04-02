@@ -121,22 +121,22 @@ export default function ListingsContent() {
       {/* Two-column layout */}
       <div className="flex flex-1 flex-col overflow-hidden md:flex-row">
         {/* Listing list */}
-        <div className="h-[226px] snap-y snap-mandatory overflow-y-scroll border-b border-zinc-100 md:h-auto md:w-96 md:snap-none md:overflow-y-auto md:border-b-0 md:border-r md:flex-shrink-0">
+        <div className="h-[224px] snap-y snap-mandatory overflow-y-scroll border-b border-zinc-100 md:h-auto md:w-96 md:snap-none md:overflow-y-auto md:border-b-0 md:border-r md:flex-shrink-0">
           {listings.length === 0 ? (
             <p className="p-8 text-center text-zinc-400">
               No spots found nearby. Try a different location.
             </p>
           ) : (
-            <ul>
+            <ul className="flex flex-col gap-2 p-2">
               {listings.map(listing => (
                 <li key={listing.id} className="snap-start">
                   <Link
                     href={`/listing?id=${listing.id}&date=${date}&address=${encodeURIComponent(address)}`}
-                    className={`flex gap-4 border-b border-zinc-100 p-4 transition-all hover:shadow-sm hover:bg-white ${hoveredId === listing.id ? 'bg-white shadow-sm' : ''}`}
+                    className={`flex gap-3 rounded-xl border-l-4 border-l-yellow-400 bg-white p-3 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5 ${hoveredId === listing.id ? 'shadow-md -translate-y-0.5' : ''}`}
                     onMouseEnter={() => setHoveredId(listing.id)}
                     onMouseLeave={() => setHoveredId(null)}
                   >
-                    <div className="relative h-20 w-28 flex-shrink-0 overflow-hidden rounded-lg bg-zinc-100">
+                    <div className="relative h-20 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-zinc-100">
                       <Image
                         src={listing.imageUrl}
                         alt={listing.address}
@@ -145,15 +145,13 @@ export default function ListingsContent() {
                         unoptimized
                       />
                     </div>
-                    <div className="flex flex-col justify-center gap-1">
-                      <p className="text-sm font-semibold">{listing.neighbourhood}</p>
+                    <div className="flex flex-col justify-center gap-1.5">
+                      <p className="text-sm font-semibold leading-tight">{listing.neighbourhood}</p>
                       <p className="line-clamp-1 text-xs text-zinc-500">{listing.address}</p>
-                      <p className="text-sm">
-                        <span className="font-semibold">${listing.pricePerHour}/hr</span>
-                        <span className="ml-2 text-xs text-zinc-400">
-                          ${listing.pricePerDay}/day
-                        </span>
-                      </p>
+                      <div className="flex items-center gap-2">
+                        <span className="rounded-full bg-yellow-400 px-2.5 py-0.5 text-xs font-bold text-gray-900">${listing.pricePerHour}/hr</span>
+                        <span className="text-xs text-zinc-400">${listing.pricePerDay}/day</span>
+                      </div>
                     </div>
                   </Link>
                 </li>

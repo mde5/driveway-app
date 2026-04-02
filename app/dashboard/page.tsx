@@ -30,7 +30,7 @@ export default function DashboardPage() {
         <div className="flex flex-col gap-3 pt-2">
           <Link
             href="/"
-            className="rounded-md bg-indigo-600 py-2 text-sm font-medium text-white hover:bg-indigo-700 transition-colors"
+            className="rounded-md bg-yellow-400 py-2 text-sm font-medium text-gray-900 hover:bg-yellow-500 transition-colors"
           >
             Find parking
           </Link>

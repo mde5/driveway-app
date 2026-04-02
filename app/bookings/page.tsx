@@ -54,14 +54,14 @@ export default function BookingsPage() {
       ) : bookings.length === 0 ? (
         <div className="rounded-xl border border-dashed border-zinc-200 py-16 text-center">
           <p className="mb-4 text-zinc-500">You haven&apos;t made any bookings yet.</p>
-          <Link href="/" className="text-sm font-medium text-indigo-600 underline underline-offset-2">
+          <Link href="/" className="text-sm font-medium text-yellow-600 underline underline-offset-2">
             Find parking
           </Link>
         </div>
       ) : (
         <ul className="space-y-4">
           {bookings.map(booking => (
-            <li key={booking.id} className="rounded-xl border border-zinc-200 p-5 space-y-3">
+            <li key={booking.id} className="rounded-xl border border-zinc-200 border-t-4 border-t-yellow-400 bg-white p-5 space-y-3">
               <div>
                 <p className="font-medium text-zinc-900">{booking.listingAddress}</p>
                 <p className="text-sm text-zinc-500">{booking.date}</p>
