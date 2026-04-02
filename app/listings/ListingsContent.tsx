@@ -121,7 +121,7 @@ export default function ListingsContent() {
       {/* Two-column layout */}
       <div className="flex flex-1 flex-col overflow-hidden md:flex-row">
         {/* Listing list */}
-        <div className="h-1/3 overflow-y-auto border-b border-zinc-100 md:h-auto md:w-96 md:border-b-0 md:border-r md:flex-shrink-0">
+        <div className="h-[226px] snap-y snap-mandatory overflow-y-scroll border-b border-zinc-100 md:h-auto md:w-96 md:snap-none md:overflow-y-auto md:border-b-0 md:border-r md:flex-shrink-0">
           {listings.length === 0 ? (
             <p className="p-8 text-center text-zinc-400">
               No spots found nearby. Try a different location.
@@ -129,7 +129,7 @@ export default function ListingsContent() {
           ) : (
             <ul>
               {listings.map(listing => (
-                <li key={listing.id}>
+                <li key={listing.id} className="snap-start">
                   <Link
                     href={`/listing?id=${listing.id}&date=${date}&address=${encodeURIComponent(address)}`}
                     className={`flex gap-4 border-b border-zinc-100 p-4 transition-all hover:shadow-sm hover:bg-white ${hoveredId === listing.id ? 'bg-white shadow-sm' : ''}`}
@@ -163,7 +163,7 @@ export default function ListingsContent() {
         </div>
 
         {/* Map */}
-        <div className="h-2/3 md:h-auto md:flex-1">
+        <div className="flex-1 md:flex-1">
           {center && (
             <MapView
               center={center}
