@@ -69,7 +69,7 @@ scripts/
 ## How the key pieces work
 
 ### Authentication (`context/AuthContext.tsx`)
-Firebase's `onAuthStateChanged` fires whenever a user logs in or out. We store that state in React context and expose it via `useAuth()`. Every protected page calls `useAuth()` and redirects to `/login` if there's no user. The `if (loading || !user) return null` pattern prevents a flash of content before the auth check resolves.
+Firebase's `onAuthStateChanged` fires whenever a user logs in or out. We store that state in React context and expose it via `useAuth()`. Every protected page calls `useAuth()` and redirects to `/login?redirect=<current-path>` if there's no user. After a successful sign-in, `LoginContent` reads the `redirect` param and sends the user back to where they came from (defaulting to `/dashboard`). The presence of the `redirect` param also triggers a "Please sign in to continue" banner on the login page, so users understand why they were redirected. A `useRef` flag on the dashboard suppresses this redirect during intentional sign-out, so the banner doesn't appear in that case. The `if (loading || !user) return null` pattern prevents a flash of content before the auth check resolves.
 
 ### Search flow (`app/page.tsx` + `app/SearchForm.tsx`)
 The homepage uses Next.js's `<Form>` component with `action="/listings"`. On submit, it encodes the address and date as URL params and navigates to `/listings?address=...&date=...`. `SearchForm.tsx` is a separate client component purely so it can call `new Date()` at runtime to default the date field to today.
