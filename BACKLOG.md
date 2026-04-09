@@ -3,7 +3,6 @@
 Items to tackle in future sessions, roughly in priority order.
 
 # UI 
-- **Update price markers** - Change styling of price markets on the map to reflect new theme. We updated the rest of the elements but the price markers appear the same.
 - Can some pages appear as overlayed on top of the previous page that the user navigated from, rather than as a separate pages? For example, when the user clicks a listing on the map? Can it be overlayed on top of the map, so that it's clear to the user if they don't want that listing that they can go back to the map and look for others? 
 
 # Bugs
