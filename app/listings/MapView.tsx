@@ -45,9 +45,9 @@ export default function MapView({ center, listings, hoveredId, date, address }: 
             >
               <div
                 style={{
-                  background: hovered ? '#111' : '#fff',
-                  color: hovered ? '#fff' : '#111',
-                  border: '2px solid #111',
+                  background: hovered ? '#ca8a04' : '#facc15',
+                  color: '#111827',
+                  border: 'none',
                   borderRadius: '9999px',
                   padding: '4px 10px',
                   fontSize: '13px',
@@ -56,7 +56,7 @@ export default function MapView({ center, listings, hoveredId, date, address }: 
                   whiteSpace: 'nowrap',
                   boxShadow: '0 2px 6px rgba(0,0,0,0.25)',
                   cursor: 'pointer',
-                  transition: 'background 0.15s, color 0.15s',
+                  transition: 'background 0.15s',
                 }}
               >
                 ${listing.pricePerHour}/hr
