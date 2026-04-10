@@ -3,10 +3,15 @@
 Items to tackle in future sessions, roughly in priority order.
 
 # UI 
-- Can some pages appear as overlayed on top of the previous page that the user navigated from, rather than as a separate pages? For example, when the user clicks a listing on the map? Can it be overlayed on top of the map, so that it's clear to the user if they don't want that listing that they can go back to the map and look for others? 
+- My bookings page doesn't have the image like the My listings page does. Should we make it consistent and show images here too?
+- Update some of the seeded images which don't show a driveway or parking spot (realism improvment)
+- From the homepage, there's no direct link to the user's profile / dashboard. If they aren't logged in, "List your space" will redirect to login, but if the user is already logged in there's no way to get to their dashboard/profile without first clicking List your space, then clicking <- Your listings then <- dashboard. Let's streamline the flow for logged in users. 
 
 # Bugs
-- **Possible navigation error** - When the user goes back on page from a listing to the listings page/map, sometimes it gets stuck because the url is /listings but ththere are no URL params. 
+- Duplicate listing for Kensington market which is not actually at the location specified. Did we seed this incorrect listing with the wrong geolocation (lat/lng)?
+
+# Features
+- Add a way to cancel a booking from the My bookings page
 
 # User flow
 - **Separate renters/rentee flow** - Should we consi separating user flows for those who are renting their driveway vs. those who are looking for parking? Does it make sense to show both to users on the dashboard since users may not be both renters and buyers? While we are still in the early phases it's nice to have all the links on the same dashboard, but we can also think about creating a separate flow for users who are renting out their parking space. 
