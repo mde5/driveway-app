@@ -1,5 +1,5 @@
 'use client'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { doc, getDoc } from 'firebase/firestore'
 import { httpsCallable } from 'firebase/functions'
@@ -17,7 +17,7 @@ type Listing = {
   imageUrl: string
 }
 
-export default function ListingDrawer({ id }: { id: string }) {
+export default function ListingDrawer({ id, onDismiss }: { id: string; onDismiss: () => void }) {
   const searchParams = useSearchParams()
   const date = searchParams.get('date') ?? ''
   const { user } = useAuth()
@@ -28,12 +28,6 @@ export default function ListingDrawer({ id }: { id: string }) {
   const [hours, setHours] = useState(2)
   const [reserving, setReserving] = useState(false)
   const [reserveError, setReserveError] = useState<string | null>(null)
-
-  const dismiss = useCallback(() => {
-    const params = new URLSearchParams(window.location.search)
-    params.delete('selected')
-    router.replace(`/listings?${params.toString()}`)
-  }, [router])
 
   useEffect(() => {
     setLoading(true)
@@ -46,11 +40,11 @@ export default function ListingDrawer({ id }: { id: string }) {
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') dismiss()
+      if (e.key === 'Escape') onDismiss()
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [dismiss])
+  }, [onDismiss])
 
   const hourlyTotal = listing ? listing.pricePerHour * hours : 0
   const usesDayRate = listing ? hourlyTotal >= listing.pricePerDay : false
@@ -87,13 +81,13 @@ export default function ListingDrawer({ id }: { id: string }) {
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto py-8">
       {/* Backdrop */}
-      <div className="fixed inset-0 bg-black/50" onClick={dismiss} />
+      <div className="fixed inset-0 bg-black/50" onClick={onDismiss} />
 
       {/* Panel */}
       <div className="relative z-10 mx-4 w-full max-w-2xl rounded-2xl bg-white shadow-2xl">
         {/* Close button */}
         <button
-          onClick={dismiss}
+          onClick={onDismiss}
           className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-zinc-500 shadow-sm hover:bg-white hover:text-black"
           aria-label="Close"
         >

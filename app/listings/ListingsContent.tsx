@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '@/lib/firebase'
@@ -40,7 +40,20 @@ export default function ListingsContent() {
   const searchParams = useSearchParams()
   const address = searchParams.get('address') ?? ''
   const date = searchParams.get('date') ?? ''
-  const selectedId = searchParams.get('selected') ?? ''
+  const urlSelectedId = searchParams.get('selected') ?? ''
+  const [selectedId, setSelectedId] = useState(urlSelectedId)
+
+  // Sync state when URL changes via card/marker navigation
+  useEffect(() => {
+    setSelectedId(urlSelectedId)
+  }, [urlSelectedId])
+
+  const handleDismiss = useCallback(() => {
+    setSelectedId('')
+    const params = new URLSearchParams(window.location.search)
+    params.delete('selected')
+    window.history.replaceState(null, '', `/listings?${params.toString()}`)
+  }, [])
 
   const [center, setCenter] = useState<{ lat: number; lng: number } | null>(null)
   const [listings, setListings] = useState<Listing[]>([])
@@ -108,7 +121,7 @@ export default function ListingsContent() {
 
   return (
     <>
-    {selectedId && <ListingDrawer id={selectedId} />}
+    {selectedId && <ListingDrawer id={selectedId} onDismiss={handleDismiss} />}
     <div className="flex h-screen flex-col">
       {/* Header */}
       <div className="flex items-center gap-4 border-b border-zinc-100 bg-white px-6 py-4 shadow-sm">
