@@ -39,7 +39,7 @@ export default function MapView({ center, listings, hoveredId, date, address }: 
               title={`${listing.address} — $${listing.pricePerHour}/hr`}
               onClick={() =>
                 router.push(
-                  `/listing?id=${listing.id}&date=${date}&address=${encodeURIComponent(address)}`
+                  `/listings?address=${encodeURIComponent(address)}&date=${date}&selected=${listing.id}`
                 )
               }
             >

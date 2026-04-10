@@ -6,6 +6,7 @@ import { db } from '@/lib/firebase'
 import Image from 'next/image'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import ListingDrawer from './ListingDrawer'
 
 const MapView = dynamic(() => import('./MapView'), { ssr: false })
 
@@ -39,6 +40,7 @@ export default function ListingsContent() {
   const searchParams = useSearchParams()
   const address = searchParams.get('address') ?? ''
   const date = searchParams.get('date') ?? ''
+  const selectedId = searchParams.get('selected') ?? ''
 
   const [center, setCenter] = useState<{ lat: number; lng: number } | null>(null)
   const [listings, setListings] = useState<Listing[]>([])
@@ -105,6 +107,8 @@ export default function ListingsContent() {
   }
 
   return (
+    <>
+    {selectedId && <ListingDrawer id={selectedId} />}
     <div className="flex h-screen flex-col">
       {/* Header */}
       <div className="flex items-center gap-4 border-b border-zinc-100 bg-white px-6 py-4 shadow-sm">
@@ -131,7 +135,7 @@ export default function ListingsContent() {
               {listings.map(listing => (
                 <li key={listing.id} className="snap-start">
                   <Link
-                    href={`/listing?id=${listing.id}&date=${date}&address=${encodeURIComponent(address)}`}
+                    href={`/listings?address=${encodeURIComponent(address)}&date=${date}&selected=${listing.id}`}
                     className={`flex gap-3 rounded-xl border-l-4 border-l-yellow-400 bg-white p-3 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5 ${hoveredId === listing.id ? 'shadow-md -translate-y-0.5' : ''}`}
                     onMouseEnter={() => setHoveredId(listing.id)}
                     onMouseLeave={() => setHoveredId(null)}
@@ -174,5 +178,6 @@ export default function ListingsContent() {
         </div>
       </div>
     </div>
+    </>
   )
 }
