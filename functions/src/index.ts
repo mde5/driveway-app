@@ -35,7 +35,7 @@ export const createCheckoutSession = onCall(
       ],
       mode: "payment",
       success_url: `${origin}/booking/success?listingId=${listingId}&hours=${hours}&total=${total}&date=${encodeURIComponent(date)}&address=${encodeURIComponent(listingAddress)}`,
-      cancel_url: `${origin}/listing?id=${listingId}&date=${encodeURIComponent(date)}`,
+      cancel_url: `${origin}/listings?selected=${listingId}&date=${encodeURIComponent(date)}&address=${encodeURIComponent(listingAddress)}`,
     })
 
     return { url: session.url }
